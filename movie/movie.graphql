@@ -1,0 +1,46 @@
+input ActorInput {
+    id: String!
+    firstname: String!
+    lastname: String!
+    birthyear: Int!
+    films: [String!]
+}
+
+input MovieInput {
+    id: String!
+    title: String!
+    director: String!
+    rating: Float!
+    actors: [ActorInput]
+}
+
+type Query {
+    movie_with_id(_id: String!): Movie
+    movie_with_title(_title: String!): Movie
+    actor_with_id(_id: String!): Actor
+    all_movies: [Movie]
+    movie_with_director(_director: String!): Movie
+}
+
+type Mutation {
+    update_movie_rate(_id: String!, _rate: Float!): Movie
+    add_movie(_movie: MovieInput!): Movie
+    delete_movie_by_id(_id: String!) : Movie
+}
+
+type Movie {
+    id: String!
+    title: String!
+    director: String!
+    rating: Float!
+    actors: [Actor]
+}
+
+type Actor {
+    id: String!
+    firstname: String!
+    lastname: String!
+    birthyear: Int!
+    films: [String!]
+}
+
